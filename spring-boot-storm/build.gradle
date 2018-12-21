@@ -1,0 +1,48 @@
+buildscript {
+	ext {
+		springBootVersion = '2.1.1.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.github.yunlong.boot'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	maven{
+		url "http://central.maven.org/maven2/"
+	}
+}
+
+
+dependencies {
+	implementation('org.springframework.boot:spring-boot-starter-web'){
+//		exclude module:'org.apache.logging.log4j:log4j-to-slf4j'
+		exclude group:'ch.qos.logback'
+	}
+	compile('org.apache.storm:storm-core:1.2.2') {
+		exclude group:'org.apache.logging.log4j'
+		exclude group:'javax.servlet'
+		exclude group:'ch.qos.logback'
+	}
+	compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.8.2'
+	compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.8.2'
+	compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.8.2'
+
+	compile group: 'com.codahale.metrics', name: 'metrics-core', version: '3.0.2'
+	testImplementation('org.springframework.boot:spring-boot-starter-test'){
+		exclude group:'ch.qos.logback'
+	}
+}
