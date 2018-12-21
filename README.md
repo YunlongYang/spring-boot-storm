@@ -11,6 +11,6 @@ implementation('org.springframework.boot:spring-boot-starter-web')
 compile('org.apache.storm:storm-core:1.2.2')
 ```
 
-## Dost it work well? (实际效果)
+## Does it work well? (实际效果)
 - [EN] Yes,it works good.In this project,I'm using Spring's exposed Controller component to control Storm's work.
 - [ZH]还不错，在这个项目里，我用的是Spring暴露的Controller组件来控制Storm工作的.
